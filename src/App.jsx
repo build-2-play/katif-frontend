@@ -39,7 +39,7 @@ function Navbar({ page, setPage }) {
     <nav className="bg-green-900 px-5 h-14 flex items-center justify-between sticky top-0 z-50">
       <div onClick={() => setPage("home")}
         className="flex items-center gap-2 text-green-300 font-medium text-base cursor-pointer">
-        🌿 קטיף קהילתי
+🍎 פירות לכולם
       </div>
       <div className="flex gap-1">
         {[["home","בית"],["map","מפת קטיפים"],["report","דיווח עץ"],["register","הרשמה"]].map(([p,l]) => (
