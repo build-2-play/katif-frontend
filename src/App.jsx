@@ -1,10 +1,14 @@
-import { useState } from "react";
+import RecipientPage   from "./RecipientPage";
+import AdminLogin      from "./AdminLogin";
+import AdminDashboard  from "./AdminDashboard";
+import { useAdmin }    from "./useAdmin";
+import { useState }    from "react";
 
 const API = import.meta.env.VITE_API_URL;
 
 const TREES = [
   { id:1, fruit:"לימונים", emoji:"🍋", city:"נס ציונה", area:"שכונת נווה", qty:18, ripeness:92, status:"urgent", date:"17 אפריל" },
-  { id:2, fruit:"שסק",     emoji:"🍑", city:"חיפה",     area:"הדר הכרמל",  qty:12, ripeness:78, status:"urgent", date:"20 אפריל" },
+  { id:2, fruit:"שסק",     emoji:"🍑", city:"צופים",     area:"הדר הכרמל",  qty:12, ripeness:78, status:"urgent", date:"20 אפריל" },
   { id:3, fruit:"מנגו",    emoji:"🥭", city:"תל אביב",  area:"פלורנטין",   qty:25, ripeness:65, status:"future", date:"25 אפריל" },
   { id:4, fruit:"אפרסק",   emoji:"🍑", city:"ירושלים",  area:"קריית יובל", qty:9,  ripeness:95, status:"urgent", date:"היום!" },
   { id:5, fruit:"ענבים",   emoji:"🍇", city:"ראשל״צ",   area:"נחלת יהודה", qty:30, ripeness:70, status:"future", date:"22 אפריל" },
@@ -13,12 +17,13 @@ const TREES = [
 
 const STATIONS = [
   { city:"חיפה",       addr:"מרכז קהילתי אדמה, רח' הנביאים 14", hours:"א'-ה' 08:00-13:00" },
-  { city:"תל אביב",    addr:"שוק הנמל, דוכן 7",                  hours:"ו' 07:00-12:00" },
+  { city:"רמת גן",    addr:"רמת גן",                              hours:"ו' 07:00-12:00" },
   { city:"ירושלים",    addr:"עמותת לב לאב, רח' אגריפס 52",       hours:"א'-ו' 09:00-17:00" },
   { city:"באר שבע",    addr:"בנק המזון הנגב, שד' רגר 77",         hours:"ב',ד' 10:00-14:00" },
 ];
 
 export default function App() {
+  const { admin, checked, login, logout, isSuperAdmin, authHeaders } = useAdmin();
   const [page, setPage] = useState("home");
 
   return (
@@ -28,7 +33,12 @@ export default function App() {
       {page === "map"      && <MapPage      setPage={setPage} />}
       {page === "report"   && <ReportPage   setPage={setPage} />}
       {page === "register" && <RegisterPage setPage={setPage} />}
-      {page === "admin"    && <AdminPage    />}
+      {page === "recipient" && <RecipientPage setPage={setPage} />}
+      {page === "admin" && (
+        admin
+          ? <AdminDashboard admin={admin} onLogout={()=>{logout();setPage("home");}} isSuperAdmin={isSuperAdmin} />
+          : <AdminLogin onLogin={(a,t)=>login(a,t)} />
+      )}
       {page === "profile"  && <ProfilePage  />}
     </div>
   );
