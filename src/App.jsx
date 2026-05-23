@@ -7,7 +7,7 @@ import { useAdmin }   from "./useAdmin";
 const API = import.meta.env.VITE_API_URL;
 
 const TREES = [
-  { id:1, fruit:"תפוז", emoji:"🍋", city:"נס ציונה", area:"שכונת נווה", qty:18, ripeness:92, status:"urgent", date:"17 אפריל" },
+  { id:1, fruit:"תפוז",    emoji:"🍋", city:"נס ציונה", area:"שכונת נווה", qty:18, ripeness:92, status:"urgent", date:"17 אפריל" },
   { id:2, fruit:"שסק",     emoji:"🍑", city:"חיפה",     area:"הדר הכרמל",  qty:12, ripeness:78, status:"urgent", date:"20 אפריל" },
   { id:3, fruit:"מנגו",    emoji:"🥭", city:"תל אביב",  area:"פלורנטין",   qty:25, ripeness:65, status:"future", date:"25 אפריל" },
   { id:4, fruit:"אפרסק",   emoji:"🍑", city:"ירושלים",  area:"קריית יובל", qty:9,  ripeness:95, status:"urgent", date:"היום!" },
